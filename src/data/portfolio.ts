@@ -24,7 +24,7 @@ export const experiences: Experience[] = [
   {
     company: "Strapi Solutions",
     role: "Back End Engineer",
-    period: "Oct 2022 – Present",
+    period: "Sep 2023 – Present",
     location: "Paris, France",
     website: "https://strapi.io/",
     highlights: [
@@ -41,8 +41,9 @@ export const experiences: Experience[] = [
   {
     company: "Datagatherers",
     role: "Co-founder & Backend Developer",
-    period: "Jul 2019 – Sep 2022",
+    period: "Jul 2019 – Sep 2023",
     location: "Lisbon, Portugal",
+    website: "https://datagatherers.com/",
     highlights: [
       "Developed and optimized applications for data gathering, processing, and delivery",
       "Full software development lifecycle: requirements, design, coding, testing, deployment",
@@ -56,6 +57,7 @@ export const experiences: Experience[] = [
     role: "Call Centre Quality Analyst",
     period: "Feb 2017 – May 2019",
     location: "Lisbon, Portugal",
+    website: "https://www.cognizant.com/",
     highlights: [
       "Developed QA processes including call monitoring, evaluation, and coaching",
       "Managed and trained QA analysts, supporting career development",
@@ -97,6 +99,87 @@ export const education = {
   location: "Lisbon, Portugal",
   website: "https://tecnico.ulisboa.pt/en/",
 };
+
+export interface CountryLived {
+  country: string;
+  years: number;
+  flag: string;
+  current?: boolean;
+}
+
+export const countriesLived: CountryLived[] = [
+  { country: "Ukraine", years: 12, flag: "🇺🇦" },
+  { country: "Portugal", years: 18, flag: "🇵🇹" },
+  { country: "Canada", years: 2, flag: "🇨🇦" },
+  { country: "France", years: 4, flag: "🇫🇷", current: true },
+];
+
+export interface Language {
+  name: string;
+  level: "Native" | "Fluent" | "Professional" | "Conversational";
+  flag: string;
+}
+
+export const languages: Language[] = [
+  { name: "Russian", level: "Native", flag: "🇷🇺" },
+  { name: "Ukrainian", level: "Native", flag: "🇺🇦" },
+  { name: "Portuguese", level: "Fluent", flag: "🇵🇹" },
+  { name: "English", level: "Fluent", flag: "🇬🇧" },
+  { name: "French", level: "Professional", flag: "🇫🇷" },
+];
+
+export interface Recommendation {
+  name: string;
+  role: string;
+  company: string;
+  text: string;
+  relationship: string;
+  date?: string;
+  linkedinUrl?: string;
+  avatarUrl?: string;
+}
+
+export const recommendations: Recommendation[] = [
+  {
+    name: "Hicham El Abbassi",
+    role: "Lead Front End Developer",
+    company: "Strapi",
+    text: "I had the chance to work with Oleg for many years, and it was truly a pleasure every day. He's always friendly, professional, and someone you can rely on without hesitation. He brings great energy to the team and makes work more enjoyable. A fantastic colleague I highly recommend.",
+    relationship: "Worked on the same team",
+    date: "December 2025",
+    linkedinUrl: "https://www.linkedin.com/in/hicham-elbsi/",
+  },
+  {
+    name: "Gonzalo García Calcaterra",
+    role: "Backend Engineer",
+    company: "Strapi",
+    text: "I had the pleasure of working directly with Oleg on several platform initiatives, and he quickly became someone I could always rely on. He's fearless when tackling problems and consistently goes straight to the root of any issue. Beyond his technical depth, Oleg brings a ton of positive energy to every interaction. Anyone would be lucky to have him on their team.",
+    relationship: "Senior colleague",
+    date: "December 2025",
+    linkedinUrl: "https://www.linkedin.com/in/gonzalo-garc%C3%ADa-calcaterra/",
+  },
+  {
+    name: "Fatma Atallah",
+    role: "Front End Developer",
+    company: "Strapi",
+    text: "I had the pleasure of working with Oleg on the same squad, and he was an outstanding backend engineer. Always reliable, collaborative, and quick to unblock the team. His technical skills and ownership made a real impact. I'd work with him again anytime.",
+    relationship: "Worked on the same team",
+    date: "December 2025",
+    linkedinUrl: "https://www.linkedin.com/in/fatma-a-13675b83/",
+  },
+  {
+    name: "Pedro Esperança",
+    role: "Engineering Manager & 6x Founder",
+    company: "Data Gatherers",
+    text: "Oleg was our first hire at Data Gatherers. He's one of the main reasons for the company's success. He credits mine and João Ribeiro's mentorship for his lightning fast learning, but it's entirely his doing. It was his eagerness and curiosity on how to do things well that led him to become such a great software developer in such little time. I strongly recommend Oleg to any company looking to hire someone eager, humble and dedicated to the point of looking for a better way of doing things every day.",
+    relationship: "Managed directly",
+    date: "August 2021",
+    linkedinUrl: "https://www.linkedin.com/in/esperancajs/",
+  },
+];
+
+// LinkedIn profile URL for recommendations
+export const LINKEDIN_RECOMMENDATIONS_URL = "https://www.linkedin.com/in/olegmaksimov/details/recommendations/";
 
 export const easterEggs = {
   konamiCode: ["ArrowUp", "ArrowUp", "ArrowDown", "ArrowDown", "ArrowLeft", "ArrowRight", "ArrowLeft", "ArrowRight", "b", "a"],

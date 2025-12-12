@@ -22,9 +22,11 @@ describe('Contact Component', () => {
     expect(screen.getByText(/always open to discussing/i)).toBeInTheDocument();
   });
 
-  it('renders email contact card', () => {
+  it('renders email contact card with actions', () => {
     render(<Contact />);
     expect(screen.getByText('Email')).toBeInTheDocument();
+    expect(screen.getByText('📤 Send')).toBeInTheDocument();
+    expect(screen.getByText('📋 Copy')).toBeInTheDocument();
   });
 
   it('renders LinkedIn contact card', () => {
@@ -37,16 +39,16 @@ describe('Contact Component', () => {
     expect(screen.getByText('Resume')).toBeInTheDocument();
   });
 
-  it('copies email to clipboard when clicked', async () => {
+  it('copies email to clipboard when copy button clicked', async () => {
     render(<Contact />);
-    const emailCard = screen.getByText('Email').closest('button');
+    const copyBtn = screen.getByText('📋 Copy');
     
-    fireEvent.click(emailCard!);
+    fireEvent.click(copyBtn);
     
     expect(navigator.clipboard.writeText).toHaveBeenCalledWith('oleg.v.maksimov@gmail.com');
     
     await waitFor(() => {
-      expect(screen.getByText('Copied! ✓')).toBeInTheDocument();
+      expect(screen.getByText('✓ Copied')).toBeInTheDocument();
     });
   });
 

@@ -6,6 +6,8 @@ import {
   skills,
   education,
   easterEggs,
+  recommendations,
+  LINKEDIN_RECOMMENDATIONS_URL,
 } from '../../data/portfolio';
 
 describe('Portfolio Data', () => {
@@ -107,6 +109,37 @@ describe('Portfolio Data', () => {
 
     it('has click threshold', () => {
       expect(easterEggs.clickThreshold).toBeGreaterThan(0);
+    });
+  });
+
+  describe('recommendations', () => {
+    it('has recommendations array', () => {
+      expect(recommendations).toBeInstanceOf(Array);
+    });
+
+    it('each recommendation has required fields', () => {
+      recommendations.forEach((rec) => {
+        expect(rec.name).toBeDefined();
+        expect(rec.role).toBeDefined();
+        expect(rec.company).toBeDefined();
+        expect(rec.text).toBeDefined();
+        expect(rec.relationship).toBeDefined();
+      });
+    });
+
+    it('recommendations have LinkedIn URLs', () => {
+      recommendations.forEach((rec) => {
+        if (rec.linkedinUrl) {
+          expect(rec.linkedinUrl).toContain('linkedin.com');
+        }
+      });
+    });
+  });
+
+  describe('LINKEDIN_RECOMMENDATIONS_URL', () => {
+    it('is a valid LinkedIn URL', () => {
+      expect(LINKEDIN_RECOMMENDATIONS_URL).toContain('linkedin.com');
+      expect(LINKEDIN_RECOMMENDATIONS_URL).toContain('recommendations');
     });
   });
 });

@@ -14,10 +14,12 @@ export const Contact = () => {
   return (
     <section id="contact" className="section contact">
       <div className="container">
-        <h2 className="section-title">
-          <span className="title-decorator">{"<"}</span>
-          Get In Touch
-          <span className="title-decorator">{"/>"}</span>
+        <h2 className="section-title fancy-title">
+          <span className="title-icon">📬</span>
+          <span className="title-text">
+            <span className="title-main">Get In Touch</span>
+            <span className="title-sub">Let's build something together</span>
+          </span>
         </h2>
         <div className="contact-content">
           <p className="contact-intro">
@@ -25,13 +27,27 @@ export const Contact = () => {
             or just having a chat about technology. Feel free to reach out!
           </p>
           <div className="contact-methods">
-            <button className="contact-card" onClick={handleCopyEmail}>
-              <span className="contact-icon">📧</span>
+            <div className="contact-card email-card">
+              <span className="contact-icon">✉️</span>
               <span className="contact-label">Email</span>
-              <span className="contact-value">
-                {copied ? "Copied! ✓" : "Click to copy"}
-              </span>
-            </button>
+              <span className="contact-value">{email}</span>
+              <div className="email-actions">
+                <a
+                  href={`mailto:${email}`}
+                  className="email-action-btn"
+                  title="Send email"
+                >
+                  📤 Send
+                </a>
+                <button
+                  className="email-action-btn"
+                  onClick={handleCopyEmail}
+                  title="Copy email"
+                >
+                  {copied ? "✓ Copied" : "📋 Copy"}
+                </button>
+              </div>
+            </div>
             <a
               href={personalInfo.linkedin}
               target="_blank"

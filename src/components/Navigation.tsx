@@ -4,7 +4,8 @@ const navItems = [
   { label: "About", href: "#about" },
   { label: "Experience", href: "#experience" },
   { label: "Skills", href: "#skills" },
-  { label: "Education", href: "#education" },
+  { label: "Journey", href: "#journey" },
+  { label: "Architecture", href: "#architecture" },
   { label: "Contact", href: "#contact" },
 ];
 
@@ -25,9 +26,8 @@ export const Navigation = () => {
     <nav className={`navigation ${isScrolled ? "scrolled" : ""}`}>
       <div className="nav-container">
         <a href="#" className="nav-logo">
-          <span className="logo-bracket">{"<"}</span>
-          OM
-          <span className="logo-bracket">{"/>"}</span>
+          <span className="logo-icon">⚡</span>
+          <span className="logo-text">OM</span>
         </a>
 
         <button

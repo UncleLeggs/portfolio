@@ -5,6 +5,9 @@ import { About } from "./components/About";
 import { Experience } from "./components/Experience";
 import { Skills } from "./components/Skills";
 import { Education } from "./components/Education";
+import { WorldMap } from "./components/WorldMap";
+import { Recommendations } from "./components/Recommendations";
+import { Architecture } from "./components/Architecture/index";
 import { Contact } from "./components/Contact";
 import { Footer } from "./components/Footer";
 import { KonamiOverlay } from "./components/KonamiOverlay";
@@ -30,6 +33,9 @@ function App() {
         <Experience />
         <Skills />
         <Education />
+        <WorldMap />
+        <Recommendations />
+        <Architecture />
         <Contact />
       </main>
       <Footer />
