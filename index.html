@@ -5,10 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     
     <!-- Primary Meta Tags -->
-    <title>Oleg Maksimov | Senior Backend Engineer | Node.js & TypeScript Expert</title>
-    <meta name="title" content="Oleg Maksimov | Senior Backend Engineer | Node.js & TypeScript Expert" />
-    <meta name="description" content="Oleg Maksimov - Senior Backend Engineer at Strapi with 5+ years experience. Expert in TypeScript, Node.js, PostgreSQL, AWS, Docker, Kubernetes. Building scalable, high-performance applications. Based in France." />
-    <meta name="keywords" content="Oleg Maksimov, Backend Engineer, Senior Developer, TypeScript Developer, Node.js Expert, PostgreSQL, AWS, Docker, Kubernetes, Strapi, Software Engineer, Full Stack Developer, API Development, Cloud Architecture, Paris, France, Remote Developer" />
+    <title>Oleg Maksimov - Senior Backend Engineer | Portfolio</title>
+    <meta name="title" content="Oleg Maksimov - Senior Backend Engineer | Portfolio" />
+    <meta name="description" content="Oleg Maksimov - Official Portfolio. Senior Backend Engineer at Strapi, France. Expert in TypeScript, Node.js, PostgreSQL, AWS, Docker, Kubernetes. Co-founder of Datagatherers. Instituto Superior Técnico alumnus." />
+    <meta name="keywords" content="Oleg Maksimov, Oleg Maksimov portfolio, Oleg Maksimov engineer, Oleg Maksimov Strapi, Oleg Maksimov developer, Backend Engineer, Senior Developer, TypeScript, Node.js, PostgreSQL, AWS, Docker, Kubernetes, Strapi, Paris, France, Portuguese developer" />
     <meta name="author" content="Oleg Maksimov" />
     <meta name="robots" content="index, follow" />
     <meta name="language" content="English" />
@@ -23,7 +23,7 @@
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://uncleleggs.github.io/portfolio/" />
-    <meta property="og:title" content="Oleg Maksimov | Senior Backend Engineer | Node.js & TypeScript Expert" />
+    <meta property="og:title" content="Oleg Maksimov - Senior Backend Engineer | Official Portfolio" />
     <meta property="og:description" content="Senior Backend Engineer at Strapi with 5+ years experience. Expert in TypeScript, Node.js, PostgreSQL, AWS, Docker, Kubernetes. Building scalable applications." />
     <meta property="og:image" content="https://uncleleggs.github.io/portfolio/og-image.svg" />
     <meta property="og:site_name" content="Oleg Maksimov Portfolio" />
@@ -32,7 +32,7 @@
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image" />
     <meta property="twitter:url" content="https://uncleleggs.github.io/portfolio/" />
-    <meta property="twitter:title" content="Oleg Maksimov | Senior Backend Engineer" />
+    <meta property="twitter:title" content="Oleg Maksimov - Senior Backend Engineer | Portfolio" />
     <meta property="twitter:description" content="Senior Backend Engineer at Strapi. Expert in TypeScript, Node.js, PostgreSQL, AWS, Docker, Kubernetes." />
     <meta property="twitter:image" content="https://uncleleggs.github.io/portfolio/og-image.svg" />
 
@@ -44,32 +44,63 @@
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
-      "@type": "Person",
-      "name": "Oleg Maksimov",
-      "url": "https://uncleleggs.github.io/portfolio/",
-      "image": "https://uncleleggs.github.io/portfolio/og-image.svg",
-      "sameAs": [
-        "https://www.linkedin.com/in/olegmaksimov/",
-        "https://github.com/UncleLeggs"
-      ],
-      "jobTitle": "Senior Backend Engineer",
-      "worksFor": {
-        "@type": "Organization",
-        "name": "Strapi",
-        "url": "https://strapi.io/"
-      },
-      "description": "Senior Backend Engineer with expertise in TypeScript, Node.js, PostgreSQL, AWS, Docker, and Kubernetes",
-      "knowsAbout": ["TypeScript", "Node.js", "PostgreSQL", "MongoDB", "AWS", "Docker", "Kubernetes", "API Development", "Backend Development"],
-      "alumniOf": {
-        "@type": "CollegeOrUniversity",
-        "name": "Instituto Superior Técnico",
-        "url": "https://tecnico.ulisboa.pt/en/"
-      },
-      "nationality": "Portuguese",
-      "address": {
-        "@type": "PostalAddress",
-        "addressCountry": "France"
-      }
+      "@graph": [
+        {
+          "@type": "WebSite",
+          "@id": "https://uncleleggs.github.io/portfolio/#website",
+          "url": "https://uncleleggs.github.io/portfolio/",
+          "name": "Oleg Maksimov Portfolio",
+          "description": "Official portfolio of Oleg Maksimov - Senior Backend Engineer",
+          "publisher": { "@id": "https://uncleleggs.github.io/portfolio/#person" }
+        },
+        {
+          "@type": "WebPage",
+          "@id": "https://uncleleggs.github.io/portfolio/#webpage",
+          "url": "https://uncleleggs.github.io/portfolio/",
+          "name": "Oleg Maksimov - Senior Backend Engineer | Portfolio",
+          "isPartOf": { "@id": "https://uncleleggs.github.io/portfolio/#website" },
+          "about": { "@id": "https://uncleleggs.github.io/portfolio/#person" },
+          "description": "Official portfolio of Oleg Maksimov, Senior Backend Engineer at Strapi"
+        },
+        {
+          "@type": "Person",
+          "@id": "https://uncleleggs.github.io/portfolio/#person",
+          "name": "Oleg Maksimov",
+          "givenName": "Oleg",
+          "familyName": "Maksimov",
+          "url": "https://uncleleggs.github.io/portfolio/",
+          "image": "https://uncleleggs.github.io/portfolio/og-image.svg",
+          "sameAs": [
+            "https://www.linkedin.com/in/olegmaksimov/",
+            "https://github.com/UncleLeggs"
+          ],
+          "jobTitle": "Senior Backend Engineer",
+          "worksFor": {
+            "@type": "Organization",
+            "name": "Strapi",
+            "url": "https://strapi.io/"
+          },
+          "description": "Oleg Maksimov is a Senior Backend Engineer at Strapi with expertise in TypeScript, Node.js, PostgreSQL, AWS, Docker, and Kubernetes. Co-founder of Datagatherers.",
+          "knowsAbout": ["TypeScript", "Node.js", "PostgreSQL", "MongoDB", "AWS", "Docker", "Kubernetes", "API Development", "Backend Development", "Python", "Kafka", "RabbitMQ"],
+          "alumniOf": {
+            "@type": "CollegeOrUniversity",
+            "name": "Instituto Superior Técnico",
+            "url": "https://tecnico.ulisboa.pt/en/"
+          },
+          "nationality": {
+            "@type": "Country",
+            "name": "Portugal"
+          },
+          "workLocation": {
+            "@type": "Place",
+            "address": {
+              "@type": "PostalAddress",
+              "addressLocality": "Paris",
+              "addressCountry": "France"
+            }
+          }
+        }
+      ]
     }
     </script>
     
