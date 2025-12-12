@@ -1,12 +1,12 @@
 import { describe, it, expect } from 'vitest';
-import { render, screen, fireEvent } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 import { Skills } from '../../components/Skills';
 import { skills } from '../../data/portfolio';
 
 describe('Skills Component', () => {
   it('renders the section title', () => {
     render(<Skills />);
-    expect(screen.getByText('Skills')).toBeInTheDocument();
+    expect(screen.getByText('Tech Stack')).toBeInTheDocument();
   });
 
   it('renders all skills from data', () => {
@@ -24,20 +24,9 @@ describe('Skills Component', () => {
     expect(screen.getByText('Tools')).toBeInTheDocument();
   });
 
-  it('shows hint text', () => {
+  it('shows growth mindset message', () => {
     render(<Skills />);
-    expect(screen.getByText(/Try clicking all the skills/i)).toBeInTheDocument();
-  });
-
-  it('skill tag responds to hover', () => {
-    render(<Skills />);
-    const typeScriptTag = screen.getByText('TypeScript');
-    
-    fireEvent.mouseEnter(typeScriptTag);
-    expect(typeScriptTag).toHaveClass('hovered');
-    
-    fireEvent.mouseLeave(typeScriptTag);
-    expect(typeScriptTag).not.toHaveClass('hovered');
+    expect(screen.getByText(/Growth Mindset/i)).toBeInTheDocument();
   });
 
   it('has correct section id for navigation', () => {

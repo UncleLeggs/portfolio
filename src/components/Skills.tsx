@@ -50,10 +50,12 @@ export const Skills = () => {
   return (
     <section id="skills" className="section skills">
       <div className="container">
-        <h2 className="section-title">
-          <span className="title-decorator">[</span>
-          Skills
-          <span className="title-decorator">]</span>
+        <h2 className="section-title fancy-title">
+          <span className="title-icon">🛠️</span>
+          <span className="title-text">
+            <span className="title-main">Tech Stack</span>
+            <span className="title-sub">Tools I use to build great things</span>
+          </span>
         </h2>
 
         {showMessage && <div className="skill-easter-egg">{showMessage}</div>}
@@ -91,9 +93,15 @@ export const Skills = () => {
           ))}
         </div>
 
-        <p className="skills-hint">
-          💡 Hint: Try clicking all the skills...
-        </p>
+        <div className="skills-footer">
+          <p className="skills-mindset">
+            🚀 <strong>Growth Mindset:</strong> These are my current tools, but I can learn anything. 
+            New framework? New language? Bring it on.
+          </p>
+          <p className="skills-hint">
+            💡 Hint: Try clicking all the skills...
+          </p>
+        </div>
       </div>
     </section>
   );
