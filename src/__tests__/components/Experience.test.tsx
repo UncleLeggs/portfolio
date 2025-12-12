@@ -5,7 +5,7 @@ import { Experience } from '../../components/Experience';
 describe('Experience Component', () => {
   it('renders the section title', () => {
     render(<Experience />);
-    expect(screen.getByText('Experience')).toBeInTheDocument();
+    expect(screen.getByText('Career Journey')).toBeInTheDocument();
   });
 
   it('renders all company names', () => {
@@ -21,22 +21,27 @@ describe('Experience Component', () => {
     expect(screen.getByText('Co-founder & Backend Developer')).toBeInTheDocument();
   });
 
-  it('expands timeline item on click', () => {
+  it('most recent job (Strapi) is expanded by default', () => {
     render(<Experience />);
-    const strapiItem = screen.getByText('Strapi Solutions').closest('.timeline-item');
+    const roadmapItems = document.querySelectorAll('.roadmap-item');
     
-    // First item should be expanded by default
-    expect(strapiItem).toHaveClass('expanded');
+    // Last item in DOM is Strapi (most recent) and should be expanded
+    const lastItem = roadmapItems[roadmapItems.length - 1];
+    expect(lastItem).toHaveClass('expanded');
   });
 
-  it('collapses expanded item when clicked again', () => {
+  it('toggles expansion when clicked', () => {
     render(<Experience />);
-    const strapiContent = screen.getByText('Strapi Solutions').closest('.timeline-content');
-    const strapiItem = strapiContent?.closest('.timeline-item');
+    const roadmapItems = document.querySelectorAll('.roadmap-item');
+    const lastItem = roadmapItems[roadmapItems.length - 1]; // Strapi
     
     // Click to collapse
-    fireEvent.click(strapiItem!);
-    expect(strapiItem).not.toHaveClass('expanded');
+    fireEvent.click(lastItem);
+    expect(lastItem).not.toHaveClass('expanded');
+    
+    // Click to expand again
+    fireEvent.click(lastItem);
+    expect(lastItem).toHaveClass('expanded');
   });
 
   it('has correct section id for navigation', () => {
