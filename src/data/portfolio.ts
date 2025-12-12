@@ -4,7 +4,7 @@ export const personalInfo = {
   tagline: "Building scalable, high-performance applications",
   linkedin: "https://www.linkedin.com/in/olegmaksimov/",
   github: "https://github.com/UncleLeggs",
-  cvPath: "/assets/CV_OLEG_MAKSIMOV.pdf",
+  cvPath: import.meta.env.BASE_URL + "assets/CV_OLEG_MAKSIMOV.pdf",
 };
 
 export const aboutMe = `Experienced backend engineer and co-founder with a strong focus on building scalable, high-performance applications. Skilled in TypeScript, Node.js, Python, and databases like PostgreSQL, MySQL, and MongoDB, with hands-on experience in API design, third-party integrations, event-driven architectures, and cloud deployments (AWS, Docker, Kubernetes).
