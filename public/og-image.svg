@@ -1,0 +1,51 @@
+<svg width="1200" height="630" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#0a0a0f"/>
+      <stop offset="100%" style="stop-color:#12121a"/>
+    </linearGradient>
+    <linearGradient id="accent" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#6366f1"/>
+      <stop offset="50%" style="stop-color:#8b5cf6"/>
+      <stop offset="100%" style="stop-color:#a855f7"/>
+    </linearGradient>
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+  
+  <!-- Background -->
+  <rect width="1200" height="630" fill="url(#bg)"/>
+  
+  <!-- Decorative circles -->
+  <circle cx="150" cy="500" r="200" fill="#6366f1" opacity="0.1"/>
+  <circle cx="1050" cy="130" r="180" fill="#8b5cf6" opacity="0.1"/>
+  
+  <!-- Code brackets decoration -->
+  <text x="80" y="200" font-family="monospace" font-size="120" fill="#6366f1" opacity="0.3">&lt;</text>
+  <text x="1050" y="500" font-family="monospace" font-size="120" fill="#8b5cf6" opacity="0.3">/&gt;</text>
+  
+  <!-- Main content -->
+  <text x="600" y="220" font-family="Inter, system-ui, sans-serif" font-size="72" font-weight="800" fill="url(#accent)" text-anchor="middle" filter="url(#glow)">Oleg Maksimov</text>
+  
+  <text x="600" y="300" font-family="Inter, system-ui, sans-serif" font-size="36" fill="#a0a0b0" text-anchor="middle">Senior Backend Engineer</text>
+  
+  <!-- Tech stack -->
+  <text x="600" y="380" font-family="Fira Code, monospace" font-size="24" fill="#6b6b7b" text-anchor="middle">TypeScript • Node.js • PostgreSQL • AWS • Docker • K8s</text>
+  
+  <!-- Divider line -->
+  <rect x="400" y="420" width="400" height="2" fill="url(#accent)" rx="1"/>
+  
+  <!-- Current role -->
+  <text x="600" y="480" font-family="Inter, system-ui, sans-serif" font-size="28" fill="#ffffff" text-anchor="middle">Backend Engineer @ Strapi</text>
+  
+  <!-- Location -->
+  <text x="600" y="530" font-family="Inter, system-ui, sans-serif" font-size="22" fill="#6b6b7b" text-anchor="middle">📍 France</text>
+  
+  <!-- Bottom accent bar -->
+  <rect x="0" y="620" width="1200" height="10" fill="url(#accent)"/>
+</svg>

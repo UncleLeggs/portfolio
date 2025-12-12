@@ -1,0 +1,5 @@
+# robots.txt for Oleg Maksimov Portfolio
+User-agent: *
+Allow: /
+
+Sitemap: https://uncleleggs.github.io/portfolio/sitemap.xml
