@@ -64,32 +64,10 @@ const DEMO_ENDPOINTS: readonly DemoEndpoint[] = [
   },
   {
     method: "GET",
-    path: "/api/v1/portfolio/stats",
-    description: "Portfolio analytics",
-    mockResponse: () => ({
-      status: 200,
-      data: {
-        visitors: {
-          total: Math.floor(Math.random() * 10000) + 5000,
-          unique: Math.floor(Math.random() * 5000) + 2000,
-          returning: Math.floor(Math.random() * 1000) + 500,
-        },
-        engagement: {
-          avgSessionDuration: "2m 34s",
-          bounceRate: "32%",
-          pagesPerSession: 4.2,
-        },
-        topReferrers: ["linkedin.com", "github.com", "google.com"],
-        peakHours: ["14:00", "16:00", "20:00"],
-      },
-    }),
-  },
-  {
-    method: "GET",
     path: "/api/v1/users/me",
     description: "Get current user (requires auth)",
     mockResponse: () => {
-      // Simulate 70% success, 30% unauthorized
+      // Simulate 70% unauthorized to demonstrate auth errors
       if (Math.random() > 0.3) {
         return {
           status: 401,
@@ -97,7 +75,8 @@ const DEMO_ENDPOINTS: readonly DemoEndpoint[] = [
             error: "Unauthorized",
             message: "Invalid or expired token",
             code: "AUTH_TOKEN_INVALID",
-            hint: "Please include a valid Bearer token in the Authorization header",
+            hint: "Include a valid Bearer token in the Authorization header",
+            docs: "https://api.example.com/docs/authentication",
           },
         };
       }
@@ -108,6 +87,7 @@ const DEMO_ENDPOINTS: readonly DemoEndpoint[] = [
           email: "demo@example.com",
           role: "viewer",
           permissions: ["read:portfolio", "read:stats"],
+          createdAt: "2023-01-15T10:30:00Z",
         },
       };
     },
@@ -115,56 +95,108 @@ const DEMO_ENDPOINTS: readonly DemoEndpoint[] = [
   {
     method: "POST",
     path: "/api/v1/contact",
-    description: "Submit contact form",
-    rateLimit: 5,
+    description: "Submit contact form (rate limited: 3/min)",
+    rateLimit: 3,
+    mockResponse: () => ({
+      status: 201,
+      data: {
+        success: true,
+        ticketId: `TKT-${Math.random().toString(36).substring(2, 8).toUpperCase()}`,
+        message: "Message queued for delivery",
+        estimatedResponse: "24 hours",
+        queuePosition: Math.floor(Math.random() * 10) + 1,
+      },
+    }),
+  },
+  {
+    method: "POST",
+    path: "/api/v1/webhooks/trigger",
+    description: "Trigger webhook (rate limited: 2/min)",
+    rateLimit: 2,
+    mockResponse: () => ({
+      status: 202,
+      data: {
+        accepted: true,
+        webhookId: `wh_${Math.random().toString(36).substring(2, 10)}`,
+        deliveryStatus: "pending",
+        targetUrl: "https://webhook.site/example",
+        retryPolicy: { maxAttempts: 3, backoffMs: 1000 },
+      },
+    }),
+  },
+  {
+    method: "GET",
+    path: "/api/v1/projects/:id",
+    description: "Get project by ID (may return 404)",
     mockResponse: () => {
-      // Simulate rate limiting (20% chance)
-      if (Math.random() > 0.8) {
+      // Simulate 40% not found
+      if (Math.random() > 0.6) {
         return {
-          status: 429,
+          status: 404,
           data: {
-            error: "Too Many Requests",
-            message: "Rate limit exceeded",
-            retryAfter: 60,
-            limit: "5 requests per minute",
+            error: "Not Found",
+            message: "Project with the specified ID does not exist",
+            code: "RESOURCE_NOT_FOUND",
+            resourceType: "Project",
+            suggestion: "Check the project ID or list all projects with GET /api/v1/projects",
           },
         };
       }
       return {
-        status: 201,
+        status: 200,
         data: {
-          success: true,
-          ticketId: `TKT-${Math.random().toString(36).substring(2, 8).toUpperCase()}`,
-          message: "Message queued for delivery",
-          estimatedResponse: "24 hours",
-          queuePosition: Math.floor(Math.random() * 10) + 1,
+          id: "proj_" + Math.random().toString(36).substring(2, 8),
+          name: "Strapi Cloud Platform",
+          description: "Enterprise headless CMS deployment",
+          tech: ["Node.js", "TypeScript", "PostgreSQL", "Kubernetes"],
+          status: "active",
+          metrics: { deployments: 1250, uptime: "99.9%" },
         },
       };
     },
   },
   {
-    method: "GET",
-    path: "/api/v1/projects/featured",
-    description: "Get featured projects",
-    mockResponse: () => ({
-      status: 200,
-      data: {
-        projects: [
-          { id: 1, name: "Strapi Cloud", tech: ["Node.js", "PostgreSQL", "K8s"] },
-          { id: 2, name: "Data Pipeline", tech: ["Python", "Kafka", "Redis"] },
-          { id: 3, name: "Portfolio API", tech: ["Next.js", "tRPC", "Prisma"] },
-        ],
-        meta: { total: 3, featured: true },
-      },
-    }),
+    method: "PUT",
+    path: "/api/v1/settings",
+    description: "Update settings (validation errors)",
+    mockResponse: () => {
+      // Simulate 50% validation error
+      if (Math.random() > 0.5) {
+        return {
+          status: 400,
+          data: {
+            error: "Bad Request",
+            message: "Validation failed",
+            code: "VALIDATION_ERROR",
+            details: [
+              { field: "email", message: "Invalid email format", received: "not-an-email" },
+              { field: "timezone", message: "Unknown timezone", received: "Mars/Olympus" },
+            ],
+            hint: "Check the request body against the API schema",
+          },
+        };
+      }
+      return {
+        status: 200,
+        data: {
+          success: true,
+          settings: {
+            theme: "dark",
+            notifications: true,
+            timezone: "Europe/Paris",
+          },
+          updatedAt: new Date().toISOString(),
+        },
+      };
+    },
   },
   {
     method: "DELETE",
     path: "/api/v1/sessions/current",
-    description: "Logout current session",
+    description: "Logout (may have service errors)",
     mockResponse: () => {
-      // Simulate server error (15% chance)
-      if (Math.random() > 0.85) {
+      // Simulate 20% server error
+      if (Math.random() > 0.8) {
         return {
           status: 503,
           data: {
@@ -172,6 +204,7 @@ const DEMO_ENDPOINTS: readonly DemoEndpoint[] = [
             message: "Session service temporarily unavailable",
             code: "SERVICE_UNAVAILABLE",
             retryAfter: 30,
+            statusPage: "https://status.example.com",
           },
         };
       }
@@ -184,6 +217,22 @@ const DEMO_ENDPOINTS: readonly DemoEndpoint[] = [
         },
       };
     },
+  },
+  {
+    method: "GET",
+    path: "/api/v1/admin/users",
+    description: "Admin endpoint (requires permissions)",
+    mockResponse: () => ({
+      status: 403,
+      data: {
+        error: "Forbidden",
+        message: "Insufficient permissions to access this resource",
+        code: "PERMISSION_DENIED",
+        requiredRole: "admin",
+        currentRole: "viewer",
+        hint: "Contact your administrator to request elevated permissions",
+      },
+    }),
   },
 ] as const;
 
@@ -205,14 +254,56 @@ export const LiveApiDemo = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [requestCount, setRequestCount] = useState(0);
   const [errorCount, setErrorCount] = useState(0);
+  const [rateLimitCounts, setRateLimitCounts] = useState<Record<string, { count: number; resetTime: number }>>({});
 
   const executeRequest = useCallback(async () => {
     setIsLoading(true);
     setResponse(null);
 
     const latency = await simulateLatency();
-    const mockResult = selectedEndpoint.mockResponse();
     const requestId = `req_${Date.now().toString(36)}_${Math.random().toString(36).substring(2, 8)}`;
+    const now = Date.now();
+
+    // Check rate limit for this endpoint
+    let isRateLimited = false;
+    let rateLimitRemaining = 100;
+    
+    if (selectedEndpoint.rateLimit) {
+      const endpointKey = selectedEndpoint.path;
+      const currentLimit = rateLimitCounts[endpointKey];
+      
+      // Reset if window expired (60 seconds)
+      if (!currentLimit || now > currentLimit.resetTime) {
+        setRateLimitCounts(prev => ({
+          ...prev,
+          [endpointKey]: { count: 1, resetTime: now + 60000 }
+        }));
+        rateLimitRemaining = selectedEndpoint.rateLimit - 1;
+      } else if (currentLimit.count >= selectedEndpoint.rateLimit) {
+        isRateLimited = true;
+        rateLimitRemaining = 0;
+      } else {
+        setRateLimitCounts(prev => ({
+          ...prev,
+          [endpointKey]: { ...currentLimit, count: currentLimit.count + 1 }
+        }));
+        rateLimitRemaining = selectedEndpoint.rateLimit - currentLimit.count - 1;
+      }
+    }
+
+    // Get mock response or rate limit response
+    const mockResult = isRateLimited 
+      ? {
+          status: 429,
+          data: {
+            error: "Too Many Requests",
+            message: `Rate limit exceeded. You've made ${selectedEndpoint.rateLimit} requests in the last minute.`,
+            retryAfter: Math.ceil((rateLimitCounts[selectedEndpoint.path]?.resetTime - now) / 1000),
+            limit: `${selectedEndpoint.rateLimit} requests per minute`,
+            hint: "Wait for the rate limit window to reset or try a different endpoint."
+          },
+        }
+      : selectedEndpoint.mockResponse();
 
     const apiResponse: ApiResponse = {
       status: mockResult.status,
@@ -225,8 +316,11 @@ export const LiveApiDemo = () => {
         "x-request-id": requestId,
         "x-response-time": `${latency}ms`,
         "x-ratelimit-limit": selectedEndpoint.rateLimit?.toString() || "100",
-        "x-ratelimit-remaining": Math.floor(Math.random() * 100).toString(),
-        ...(mockResult.status >= 400 && { "x-error-code": (mockResult.data as { code?: string })?.code || "UNKNOWN" }),
+        "x-ratelimit-remaining": rateLimitRemaining.toString(),
+        "x-ratelimit-reset": selectedEndpoint.rateLimit 
+          ? new Date(rateLimitCounts[selectedEndpoint.path]?.resetTime || now + 60000).toISOString()
+          : new Date(now + 60000).toISOString(),
+        ...(mockResult.status >= 400 && { "x-error-code": (mockResult.data as { code?: string })?.code || "RATE_LIMIT_EXCEEDED" }),
       },
     };
 
@@ -236,7 +330,7 @@ export const LiveApiDemo = () => {
       setErrorCount((prev) => prev + 1);
     }
     setIsLoading(false);
-  }, [selectedEndpoint]);
+  }, [selectedEndpoint, rateLimitCounts]);
 
   useEffect(() => {
     executeRequest();
@@ -354,8 +448,9 @@ export const LiveApiDemo = () => {
 
       <div className="demo-footer">
         <p>
-          💡 <strong>Note:</strong> This sandbox simulates real API behavior including auth errors (401), 
-          rate limiting (429), and service errors (503). Try different endpoints to see various responses!</p>
+          💡 <strong>Try it:</strong> Rate limits are real — spam the POST endpoints to trigger 429 errors. 
+          Also demonstrates 400 (validation), 401 (auth), 403 (permissions), 404 (not found), and 503 (service) errors.
+        </p>
       </div>
     </div>
   );
