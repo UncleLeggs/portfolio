@@ -2,15 +2,10 @@ import { useState } from "react";
 import { experiences } from "../data/portfolio";
 
 const jobIllustrations: Record<string, { image: string; scene: string; tagline: string }> = {
-  "Teleperformance / Cognizant": {
-    image: `${import.meta.env.BASE_URL}assets/github-junior-dev.png`,
-    scene: "Where it all began — one laptop, infinite curiosity, and a hunger to learn.",
-    tagline: "The Foundation",
-  },
   "Datagatherers": {
     image: `${import.meta.env.BASE_URL}assets/github-mid-dev.png`,
     scene: "From zero to startup — building something from nothing, fueled by passion and late nights.",
-    tagline: "The Leap",
+    tagline: "The Foundation",
   },
   "Strapi Solutions": {
     image: `${import.meta.env.BASE_URL}assets/github-senior-dev.png`,

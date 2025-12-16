@@ -1,6 +1,7 @@
 import { useState, useCallback } from "react";
 import { Navigation } from "./components/Navigation";
 import { Hero } from "./components/Hero";
+import { Highlights } from "./components/Highlights";
 import { About } from "./components/About";
 import { Experience } from "./components/Experience";
 import { Skills } from "./components/Skills";
@@ -29,6 +30,7 @@ function App() {
       <Navigation />
       <main>
         <Hero />
+        <Highlights />
         <About />
         <Experience />
         <Skills />

@@ -1,15 +1,17 @@
 export const personalInfo = {
   name: "Oleg Maksimov",
-  title: "Backend Engineer & Co-founder",
-  tagline: "Building scalable, high-performance applications",
+  title: "Senior Backend Engineer",
+  tagline: "Building scalable systems that handle millions of requests. Node.js • TypeScript • PostgreSQL • AWS",
   linkedin: "https://www.linkedin.com/in/olegmaksimov/",
   github: "https://github.com/UncleLeggs",
   cvPath: import.meta.env.BASE_URL + "assets/CV_OLEG_MAKSIMOV.pdf",
+  location: "Chanteheux, France",
+  phone: "+33 6 52 64 23 77",
 };
 
-export const aboutMe = `Experienced backend engineer and co-founder with a strong focus on building scalable, high-performance applications. Skilled in TypeScript, Node.js, Python, and databases like PostgreSQL, MySQL, and MongoDB, with hands-on experience in API design, third-party integrations, event-driven architectures, and cloud deployments (AWS, Docker, Kubernetes).
+export const aboutMe = `Senior Backend Engineer with extensive experience building, refactoring, and scaling production-grade backend systems. Strong background in clean architecture, event-driven systems, and cloud-native deployments.
 
-I have contributed to codebase refactoring, technical strategy, and operational efficiency, while collaborating closely with frontend teams, PMs, and QA to deliver high-quality solutions. Passionate about continuous learning, I stay up-to-date with industry trends and enjoy tackling challenging problems to improve system reliability, performance, and scalability.`;
+Proven ability to work in complex monorepositories, improve system reliability, and collaborate cross-functionally with product, frontend, and QA teams. Experienced in technical ownership, system evolution, and operational excellence.`;
 
 export interface Experience {
   company: string;
@@ -23,19 +25,20 @@ export interface Experience {
 export const experiences: Experience[] = [
   {
     company: "Strapi Solutions",
-    role: "Back End Engineer",
-    period: "Sep 2023 – Present",
+    role: "Backend Engineer",
+    period: "Oct 2023 – Present",
     location: "Paris, France",
     website: "https://strapi.io/",
     highlights: [
-      "Worked within a large monorepository environment, contributing to backend services with strong code quality and maintainability",
-      "Led major codebase refactoring to clean Application/Infrastructure/Service layered architecture",
-      "Implemented third-party API integrations with secure communication and robust error handling",
-      "Built Docker-based deployment service supporting AWS, DigitalOcean, and Kubernetes",
-      "Developed scalable APIs using Node.js, TypeScript, and PostgreSQL",
-      "Built event-driven workflows using Kafka and RabbitMQ for high-throughput architectures",
-      "Automated CI/CD pipelines via GitHub Actions",
-      "Maintained 99% service uptime through on-call program participation",
+      "Develop and maintain backend services in a large-scale monorepository, ensuring code quality, modularity, and maintainability",
+      "Owner of multiple implementations and features",
+      "Key contributor to a major refactoring initiative, migrating the codebase to a clean Application / Infrastructure / Service architecture",
+      "Design and implement secure third-party API integrations with robust error handling and reliable data flows",
+      "Build scalable APIs and backend features using Node.js, TypeScript, and PostgreSQL following cloud-native best practices",
+      "Implement event-driven and asynchronous workflows using Kafka and RabbitMQ",
+      "Contribute to Docker-based build and deployment services across AWS, DigitalOcean, and Kubernetes environments",
+      "Improve reliability through automated testing (Jest, Playwright), CI/CD pipelines, and on-call participation, maintaining ~99% service uptime",
+      "Collaborate closely with Product Managers, EM, Frontend, QA, and Customer Support teams to deliver high-quality features and resolve complex issues",
     ],
   },
   {
@@ -45,24 +48,11 @@ export const experiences: Experience[] = [
     location: "Lisbon, Portugal",
     website: "https://datagatherers.com/",
     highlights: [
-      "Developed and optimized applications for data gathering, processing, and delivery",
-      "Full software development lifecycle: requirements, design, coding, testing, deployment",
-      "Worked with TypeScript, Python, Node.js, MySQL, MongoDB, and AWS",
-      "Designed scalable APIs and integrated third-party services",
-      "Co-founder level contributions: product direction, technical decisions, client contracts",
-    ],
-  },
-  {
-    company: "Teleperformance / Cognizant",
-    role: "Call Centre Quality Analyst",
-    period: "Feb 2017 – May 2019",
-    location: "Lisbon, Portugal",
-    website: "https://www.cognizant.com/",
-    highlights: [
-      "Developed QA processes including call monitoring, evaluation, and coaching",
-      "Managed and trained QA analysts, supporting career development",
-      "Implemented performance metrics and KPIs",
-      "Completed 6 Sigma courses for process improvement",
+      "Designed, built, and operated backend systems for data gathering, processing, transformation, and delivery",
+      "Worked across the full software lifecycle: requirements, system design, development, deployment, and maintenance",
+      "Built scalable APIs, integrated third-party services, optimized database queries, and implemented security measures",
+      "Used TypeScript, Node.js, Python, MySQL, and MongoDB; deployed and operated systems on AWS",
+      "Contributed to product direction, technical strategy, operational efficiency, and client contract discussions",
     ],
   },
 ];
@@ -78,24 +68,29 @@ export const skills: Skill[] = [
   { name: "JavaScript", category: "language" },
   { name: "Node.js", category: "framework" },
   { name: "Python", category: "language" },
+  { name: "React", category: "framework" },
   { name: "PostgreSQL", category: "database" },
   { name: "MongoDB", category: "database" },
   { name: "MySQL", category: "database" },
   { name: "AWS", category: "cloud" },
+  { name: "DigitalOcean", category: "cloud" },
   { name: "Docker", category: "tools" },
   { name: "Kubernetes", category: "cloud" },
-  { name: "Git/GitHub", category: "tools" },
+  { name: "GitHub Actions", category: "tools" },
+  { name: "CircleCI", category: "tools" },
   { name: "Kafka", category: "tools" },
   { name: "RabbitMQ", category: "tools" },
-  { name: "DataDog", category: "tools" },
+  { name: "Jest", category: "tools" },
+  { name: "Playwright", category: "tools" },
+  { name: "Datadog", category: "tools" },
   { name: "ELK Stack", category: "tools" },
-  { name: "HTML & CSS", category: "language" },
+  { name: "Auth0", category: "tools" },
 ];
 
 export const education = {
   institution: "Instituto Superior Técnico",
-  degree: "Bachelor's in Engineering",
-  period: "2009 – 2014",
+  degree: "Bachelor's Degree (not completed) — Engineering",
+  period: "",
   location: "Lisbon, Portugal",
   website: "https://tecnico.ulisboa.pt/en/",
 };
@@ -121,10 +116,10 @@ export interface Language {
 }
 
 export const languages: Language[] = [
-  { name: "Russian", level: "Native", flag: "🇷🇺" },
   { name: "Ukrainian", level: "Native", flag: "🇺🇦" },
-  { name: "Portuguese", level: "Fluent", flag: "🇵🇹" },
+  { name: "Portuguese", level: "Native", flag: "🇵🇹" },
   { name: "English", level: "Fluent", flag: "🇬🇧" },
+  { name: "Russian", level: "Fluent", flag: "🇷🇺" },
   { name: "French", level: "Professional", flag: "🇫🇷" },
 ];
 

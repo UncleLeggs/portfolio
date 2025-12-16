@@ -59,6 +59,16 @@ export const Contact = () => {
               <span className="contact-value">Let's connect</span>
             </a>
             <a
+              href={personalInfo.github}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="contact-card"
+            >
+              <span className="contact-icon">🐙</span>
+              <span className="contact-label">GitHub</span>
+              <span className="contact-value">View my code</span>
+            </a>
+            <a
               href={personalInfo.cvPath}
               download
               className="contact-card"

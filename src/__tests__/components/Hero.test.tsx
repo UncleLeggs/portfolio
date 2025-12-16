@@ -18,9 +18,29 @@ describe('Hero Component', () => {
     expect(screen.getByText(/LinkedIn/i)).toBeInTheDocument();
   });
 
+  it('renders GitHub button', () => {
+    render(<Hero />);
+    expect(screen.getByText(/GitHub/i)).toBeInTheDocument();
+  });
+
   it('renders Contact button', () => {
     render(<Hero />);
     expect(screen.getByText(/Contact/i)).toBeInTheDocument();
+  });
+
+  it('shows availability badge when open to opportunities', () => {
+    render(<Hero />);
+    expect(screen.getByText('Open to opportunities')).toBeInTheDocument();
+  });
+
+  it('renders quick stats', () => {
+    render(<Hero />);
+    expect(screen.getByText('8+')).toBeInTheDocument();
+    expect(screen.getByText('Years Experience')).toBeInTheDocument();
+    expect(screen.getByText('99%')).toBeInTheDocument();
+    expect(screen.getByText('Uptime Record')).toBeInTheDocument();
+    expect(screen.getByText('5')).toBeInTheDocument();
+    expect(screen.getByText('Languages')).toBeInTheDocument();
   });
 
   it('shows scroll indicator', () => {

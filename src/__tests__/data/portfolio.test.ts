@@ -32,15 +32,15 @@ describe('Portfolio Data', () => {
       expect(aboutMe.length).toBeGreaterThan(100);
     });
 
-    it('mentions key technologies', () => {
-      expect(aboutMe).toContain('TypeScript');
-      expect(aboutMe).toContain('Node.js');
+    it('mentions key concepts', () => {
+      expect(aboutMe).toContain('clean architecture');
+      expect(aboutMe).toContain('event-driven');
     });
   });
 
   describe('experiences', () => {
-    it('has at least 3 experiences', () => {
-      expect(experiences.length).toBeGreaterThanOrEqual(3);
+    it('has at least 2 experiences', () => {
+      expect(experiences.length).toBeGreaterThanOrEqual(2);
     });
 
     it('each experience has required fields', () => {

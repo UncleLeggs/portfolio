@@ -2,6 +2,22 @@ import { useState } from "react";
 import { personalInfo, easterEggs } from "../data/portfolio";
 import { useTypewriter } from "../hooks/useTypewriter";
 
+const AVAILABILITY_STATUS = {
+  isOpen: true,
+  message: "Open to opportunities",
+};
+
+const QUICK_STATS = [
+  { value: "8+", label: "Years Experience" },
+  { value: "99%", label: "Uptime Record" },
+  { value: "5", label: "Languages" },
+  { value: "4", label: "Countries" },
+  {
+    value: "24/7",
+    label: "Availability"
+  }
+];
+
 export const Hero = () => {
   const [clickCount, setClickCount] = useState(0);
   const [showSecret, setShowSecret] = useState(false);
@@ -51,9 +67,33 @@ export const Hero = () => {
           >
             💼 LinkedIn
           </a>
+          <a
+            href={personalInfo.github}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="btn btn-secondary"
+          >
+            🐙 GitHub
+          </a>
           <a href="#contact" className="btn btn-outline">
             ✉️ Contact
           </a>
+        </div>
+        
+        {AVAILABILITY_STATUS.isOpen && (
+          <div className="availability-badge fade-in-delayed">
+            <span className="availability-dot" />
+            <span>{AVAILABILITY_STATUS.message}</span>
+          </div>
+        )}
+
+        <div className="hero-quick-stats fade-in-delayed">
+          {QUICK_STATS.map((stat, index) => (
+            <div key={index} className="hero-stat">
+              <span className="hero-stat-value">{stat.value}</span>
+              <span className="hero-stat-label">{stat.label}</span>
+            </div>
+          ))}
         </div>
       </div>
 

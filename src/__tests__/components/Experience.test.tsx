@@ -12,12 +12,11 @@ describe('Experience Component', () => {
     render(<Experience />);
     expect(screen.getByText('Strapi Solutions')).toBeInTheDocument();
     expect(screen.getByText('Datagatherers')).toBeInTheDocument();
-    expect(screen.getByText('Teleperformance / Cognizant')).toBeInTheDocument();
   });
 
   it('renders job roles', () => {
     render(<Experience />);
-    expect(screen.getByText('Back End Engineer')).toBeInTheDocument();
+    expect(screen.getByText('Backend Engineer')).toBeInTheDocument();
     expect(screen.getByText('Co-founder & Backend Developer')).toBeInTheDocument();
   });
 

@@ -16,12 +16,19 @@ describe('Skills Component', () => {
     });
   });
 
-  it('renders skill categories', () => {
+  it('renders skill categories with icons', () => {
     render(<Skills />);
     expect(screen.getByText('Languages')).toBeInTheDocument();
     expect(screen.getByText('Databases')).toBeInTheDocument();
-    expect(screen.getByText('Cloud & DevOps')).toBeInTheDocument();
-    expect(screen.getByText('Tools')).toBeInTheDocument();
+    expect(screen.getByText('Cloud & Platforms')).toBeInTheDocument();
+    expect(screen.getByText('Tools & Testing')).toBeInTheDocument();
+    expect(screen.getByText('Frameworks')).toBeInTheDocument();
+    // Check for category icons
+    expect(screen.getByText('💻')).toBeInTheDocument();
+    expect(screen.getByText('🗄️')).toBeInTheDocument();
+    expect(screen.getByText('☁️')).toBeInTheDocument();
+    expect(screen.getByText('🔧')).toBeInTheDocument();
+    expect(screen.getByText('⚛️')).toBeInTheDocument();
   });
 
   it('shows growth mindset message', () => {

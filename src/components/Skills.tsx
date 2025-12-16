@@ -1,21 +1,15 @@
 import { useState } from "react";
 import { skills, easterEggs } from "../data/portfolio";
 
-const categoryColors: Record<string, string> = {
-  language: "#61dafb",
-  database: "#4db33d",
-  cloud: "#ff9900",
-  tools: "#e535ab",
-  framework: "#68a063",
+const categoryConfig: Record<string, { color: string; label: string; icon: string }> = {
+  language: { color: "#61dafb", label: "Languages", icon: "💻" },
+  framework: { color: "#68a063", label: "Frameworks", icon: "⚛️" },
+  database: { color: "#4db33d", label: "Databases", icon: "🗄️" },
+  cloud: { color: "#ff9900", label: "Cloud & Platforms", icon: "☁️" },
+  tools: { color: "#e535ab", label: "Tools & Testing", icon: "🔧" },
 };
 
-const categoryLabels: Record<string, string> = {
-  language: "Languages",
-  database: "Databases",
-  cloud: "Cloud & DevOps",
-  tools: "Tools",
-  framework: "Frameworks",
-};
+const categoryOrder = ["language", "framework", "database", "cloud", "tools"];
 
 export const Skills = () => {
   const [hoveredSkill, setHoveredSkill] = useState<string | null>(null);
@@ -61,36 +55,45 @@ export const Skills = () => {
         {showMessage && <div className="skill-easter-egg">{showMessage}</div>}
 
         <div className="skills-grid">
-          {Object.entries(groupedSkills).map(([category, categorySkills]) => (
-            <div key={category} className="skill-category">
-              <h3
-                className="category-title"
-                style={{ color: categoryColors[category] }}
-              >
-                {categoryLabels[category]}
-              </h3>
-              <div className="skill-tags">
-                {categorySkills.map((skill) => (
-                  <span
-                    key={skill.name}
-                    className={`skill-tag ${hoveredSkill === skill.name ? "hovered" : ""} ${clickedSkills.has(skill.name) ? "clicked" : ""}`}
-                    style={{
-                      borderColor: categoryColors[skill.category],
-                      backgroundColor:
-                        hoveredSkill === skill.name
-                          ? categoryColors[skill.category]
-                          : "transparent",
-                    }}
-                    onMouseEnter={() => setHoveredSkill(skill.name)}
-                    onMouseLeave={() => setHoveredSkill(null)}
-                    onClick={() => handleSkillClick(skill.name)}
-                  >
-                    {skill.name}
-                  </span>
-                ))}
-              </div>
-            </div>
-          ))}
+          {categoryOrder
+            .filter((cat) => groupedSkills[cat])
+            .map((category) => {
+              const config = categoryConfig[category];
+              const categorySkills = groupedSkills[category];
+              return (
+                <div
+                  key={category}
+                  className="skill-category"
+                  style={{ "--category-color": config.color } as React.CSSProperties}
+                >
+                  <div className="category-header">
+                    <span className="category-icon">{config.icon}</span>
+                    <h3 className="category-title" style={{ color: config.color }}>
+                      {config.label}
+                    </h3>
+                  </div>
+                  <div className="skill-tags">
+                    {categorySkills.map((skill) => (
+                      <span
+                        key={skill.name}
+                        className={`skill-tag ${hoveredSkill === skill.name ? "hovered" : ""} ${clickedSkills.has(skill.name) ? "clicked" : ""}`}
+                        style={{
+                          borderColor: config.color,
+                          color: hoveredSkill === skill.name ? "white" : config.color,
+                          backgroundColor:
+                            hoveredSkill === skill.name ? config.color : "transparent",
+                        }}
+                        onMouseEnter={() => setHoveredSkill(skill.name)}
+                        onMouseLeave={() => setHoveredSkill(null)}
+                        onClick={() => handleSkillClick(skill.name)}
+                      >
+                        {skill.name}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              );
+            })}
         </div>
 
         <div className="skills-footer">
